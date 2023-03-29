@@ -1,0 +1,1 @@
+INSERT INTO tb_genre(id, name) VALUES (1, 'Luan');
