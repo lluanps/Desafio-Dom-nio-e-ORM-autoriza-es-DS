@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.movieflix.entitites.User;
 import com.devsuperior.movieflix.repositories.UserRepository;
+import com.devsuperior.movieflix.services.exceptions.ForbiddenException;
 
 @Service
 public class AuthService {
@@ -22,6 +23,13 @@ public class AuthService {
 			return repository.findByEmail(username);
 		} catch (Exception e) {
 			throw new UnauthorizedUserException("Usuário não encotrado");
+		}
+	}
+	
+	public void validatedSelfOrAdmin(Long userid) {
+		User user = authentificated();
+		if (!user.getId().equals(userid) && !user.hasRole("ROLE_ADMIN")) {
+			throw new ForbiddenException("Acesso negado");
 		}
 	}
 	
