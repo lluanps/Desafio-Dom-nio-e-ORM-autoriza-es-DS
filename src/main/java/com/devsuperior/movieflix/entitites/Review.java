@@ -62,6 +62,18 @@ public class Review implements Serializable {
 		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
